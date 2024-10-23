@@ -1,8 +1,10 @@
 ---
+import { siteConfig } from "src/config/site-config";
 import MainLayouts from "../layouts/MainLayouts.astro";
-import BlogPost from "../components/BlogPost.astro";
+import { getCollection } from "astro:content";
+import TypedBlogPost from "src/components/TypedBlogPost.astro";
 
-
+const blogPosts = await getCollection('blog');
 ---
 
 <MainLayouts title="Blog de Alfonso">
@@ -10,11 +12,13 @@ import BlogPost from "../components/BlogPost.astro";
 	<!-- component -->
 <section class="bg-white dark:bg-gray-900">
     <div class="container px-6 py-10 mx-auto">
-        <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">From the blog</h1>
+        <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
+            { siteConfig.title }
+        </h1>
 
-        <!-- <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            {posts.map((post) => <BlogPost { ...post } />)}
-        </div> -->
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+        </div>
         
     </div>
 </section>
