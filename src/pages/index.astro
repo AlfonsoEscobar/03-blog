@@ -4,23 +4,33 @@ import MainLayouts from "../layouts/MainLayouts.astro";
 import { getCollection } from "astro:content";
 import TypedBlogPost from "src/components/TypedBlogPost.astro";
 
-const blogPosts = await getCollection('blog');
+const blogPosts = await getCollection('blog', (post) => post.data.isDraf === false);
 ---
 
 <MainLayouts title="Blog de Alfonso">
 
 	<!-- component -->
-<section class="bg-white dark:bg-gray-900">
-    <div class="container px-6 py-10 mx-auto">
-        <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
-            { siteConfig.title }
-        </h1>
+    <section class="bg-white dark:bg-gray-900">
+        <div class="container px-6 py-10 mx-auto">
+            <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
+                { siteConfig.title }
+            </h1>
+            
+            <a class="mr-2" href="/blog/1">Blog Paginado</a>
+            <a class="mr-2" href="/authors">Autores</a>
 
-        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+            </div>
+            
+            
         </div>
-        
-    </div>
-</section>
-
+    </section>
 </MainLayouts>
+
+<style>
+    a {
+        @apply text-blue-500 hover:underline;
+    }
+
+</style>
