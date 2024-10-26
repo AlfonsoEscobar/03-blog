@@ -19,7 +19,7 @@ const blogPosts = await getCollection('blog', (post) => post.data.isDraf === fal
             <a class="mr-2" href="/blog/1">Blog Paginado</a>
             <a class="mr-2" href="/authors">Autores</a>
 
-            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            <div class="grid grid-cols-1 gap-1 mt-2 md:mt-5 md:grid-cols-3 sm:grid-cols-2 sm:mt-2">
                 {blogPosts.map((post) => <TypedBlogPost post={post} />)}
             </div>
             
