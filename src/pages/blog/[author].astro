@@ -35,7 +35,7 @@ const { blogPosts, author } = Astro.props;
       <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
         {siteConfig.title}
       </h1>
-      <a href="/">Regresar</a>
+      <a class="btn" href="/">Regresar</a>
       <div class="text-md text-gray-400 mb-0 flex flex-row mt-2">
         <Image
           class="rounded-full"
@@ -46,7 +46,7 @@ const { blogPosts, author } = Astro.props;
         />
 
         <div class="flex flex-col ml-5">
-          <a>{author.name}</a>
+          <a class="btn">{author.name}</a>
           <span>Listado de todos mis posts</span>
         </div>
       </div>
@@ -59,7 +59,7 @@ const { blogPosts, author } = Astro.props;
 </MainLayout>
 
 <style is:global>
-  a {
+  .btn {
     @apply text-blue-500 hover:underline;
   }
 </style>

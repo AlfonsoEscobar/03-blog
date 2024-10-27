@@ -5,58 +5,65 @@ import TypedBlogPost from 'src/components/TypedBlogPost.astro';
 import MainLayout from '../../layouts/MainLayouts.astro';
 import { getCollection } from "astro:content";
 
-    export const getStaticPaths = (async ({paginate}) => {
-        
-        const blogPosts = await getCollection(
-            'blog', 
-            (post) => post.data.isDraf === false
-        );
+export const getStaticPaths = (async ({paginate}) => {
+    
+    const blogPosts = await getCollection(
+        'blog', 
+        (post) => post.data.isDraf === false
+    );
 
-        return paginate(blogPosts, {pageSize: 2});
-    }) satisfies GetStaticPaths;
+    return paginate(blogPosts, {pageSize: 2});
+}) satisfies GetStaticPaths;
 
-    const { page } = Astro.props;
+const { page } = Astro.props;
 ---
 
-<MainLayout>
-    <div class="py-10 mx-auto">
-        <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
-            Alfonso's Blog paginado
-        </h1>
-    </div>
-    <a href="/">Regresar</a>
-    <section class="bg-gray-900" aria-label="Entradas de blog">
-        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-            {page.data.map((post) => <TypedBlogPost post={post} />)}
+<MainLayout title="Blog Paginado">
+    <section class="bg-gray-900 container px-6 py-10 mx-auto">
+
+        <div>
+            <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
+                Alfonso's Blog paginado
+            </h1>
         </div>
-    </section>
-
-    <section aria-label="Controles" class="flex justify-between mt-10">
-
-    <a
-        href={page.url.prev}
-        class:list={{
-        disabled: !page.url.prev,
-    }}>
-        Anteriores
-    </a>
     
-    <a
-        href={page.url.next}
-        class:list={{
-        disabled: !page.url.next,
-    }}>
-        Siguientes
-    </a>
-  </section>
+        <a class="btn2" href="/">Regresar</a>
+    
+        <section class="bg-gray-900" aria-label="Entradas de blog">
+            <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+                {page.data.map((post) => <TypedBlogPost post={post} />)}
+            </div>
+        </section>
+    
+        <section aria-label="Controles" class="flex justify-between mt-10">
+    
+        <a
+            href={page.url.prev}
+            class:list={['btn', {disabled: !page.url.prev}]}
+        >
+            Anteriores
+        </a>
+        
+        <a
+            href={page.url.next}
+            class:list={['btn',{disabled: !page.url.next}]}
+        >
+            Siguientes
+        </a>
+      </section>
+    </section>
 </MainLayout>
 
 <style>
-    a {
+    .btn {
         @apply bg-blue-500 text-white p-2 rounded hover:bg-blue-600 cursor-pointer;
     }
 
     .disabled {
         @apply bg-gray-600 hover:bg-gray-600;
+    }
+
+    .btn2 {
+        @apply text-blue-500 hover:underline;
     }
 </style>

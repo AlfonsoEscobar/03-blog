@@ -38,11 +38,7 @@ const frontmatter = post.data;
         <Image
             src={frontmatter.image}
             alt={frontmatter.title}
-            width={500}
-            width={500}
             quality="low"
-            loading="lazy"
-            transition:name={`${post.slug}-image`}
         />
     </div>
     <p class="card-title">{frontmatter.title}</p>
@@ -57,8 +53,7 @@ const frontmatter = post.data;
 .card {
   display: flex;
   flex-direction: column;
-  width: 240px;
-  height: 310px;
+  max-width: 32rem;
   max-height: 330px;
   background-color: var(--white);
   border-radius: 10px;

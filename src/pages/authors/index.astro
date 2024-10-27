@@ -2,20 +2,18 @@
 import { siteConfig } from "src/config/site-config";
 import MainLayouts from "src/layouts/MainLayouts.astro";
 import CardAuthor from "../../components/CardAuthor.astro"
-import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
-
 
 const authors = await getCollection('author');
 ---
 
 <MainLayouts title="Listado autores">
-    <section class="bg-white dark:bg-gray-900">
-        <div class="container px-6 py-10 mx-auto">
+    <section class="bg-gray-900 container px-6 py-10 mx-auto">
+        <div class="">
             <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
                 { siteConfig.title }
             </h1>
-            
+            <a class="btn mr-2" href="/">Regresar</a>
 
         </div>
     </section>
@@ -26,3 +24,9 @@ const authors = await getCollection('author');
         
     </section>
 </MainLayouts>
+<style>
+    .btn {
+        @apply text-blue-500 hover:underline;
+    }
+
+</style>
