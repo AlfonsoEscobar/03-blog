@@ -41,15 +41,10 @@ const author = await getEntry('author', post.data.author.id);
             </div>
         </div>
         <div class="mt-2">
-            <a href="/" id="btn">Regresar</a>
+            <button class="btn" onclick="history.back()">Regresar</button>
         </div>
-        
-        
     </div>
 
-
-  <!-- Image -->
-  <!-- width 600, height 220 -->
   <Image
     src={frontmatter.image}
     alt={frontmatter.title}
@@ -80,3 +75,10 @@ const author = await getEntry('author', post.data.author.id);
     </div>
 
  </BlogLayout>
+
+ <style>
+    .btn {
+        @apply text-blue-500 hover:underline mr-2;
+    }
+
+</style>

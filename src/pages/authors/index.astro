@@ -13,7 +13,7 @@ const authors = await getCollection('author');
             <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
                 { siteConfig.title }
             </h1>
-            <a class="btn mr-2" href="/">Regresar</a>
+            <button class="btn" onclick="history.back()">Regresar</button>
 
         </div>
     </section>
@@ -26,7 +26,7 @@ const authors = await getCollection('author');
 </MainLayouts>
 <style>
     .btn {
-        @apply text-blue-500 hover:underline;
+        @apply text-blue-500 hover:underline mr-2;
     }
 
 </style>
